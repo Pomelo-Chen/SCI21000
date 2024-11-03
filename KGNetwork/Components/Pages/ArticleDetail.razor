@@ -1,0 +1,89 @@
+﻿@page "/article/{Id:int}"
+@using KGNetwork.Components.Account
+@using KGNetwork.Utils
+@using Microsoft.AspNetCore.Authorization
+@using VisNetwork.Blazor
+@using VisNetwork.Blazor.Models
+
+@attribute [Authorize]
+
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<PageTitle>@Article.ArticleTitle</PageTitle>
+
+@inject IdentityUserAccessor UserAccessor
+
+
+<MudGrid>
+    <MudItem xs="7">
+        <MudPaper Style="height:100vh">
+            <iframe src="https://files.fenqubiao.com/@Article.FileName" style="width: 100%; height: 100%;"></iframe>
+        </MudPaper>
+    </MudItem>
+
+    <MudItem xs="5">
+        <MudCard>
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.h6">
+                        @Article.ArticleTitle
+                    </MudText>
+                    <MudText Typo="Typo.body2">
+
+                        <MudChip T="string" Icon="@Icons.Material.Filled.OpenWith" Label="true" Color="Color.Info" Href="@($"/articles/filter/Source/{Article.Source}")" Target="_blank">@Article.Source</MudChip>
+
+                        <MudChip T="string" Icon="@Icons.Custom.Uncategorized.Radioactive" Label="true" Color="Color.Warning" Style="color:black;">@Article.PublicationDate</MudChip>
+
+                        <MudChip T="string" Icon="@Icons.Custom.Uncategorized.ColorPalette" Label="true" Color="Color.Default" Style="color:black;">@Article.DocumentType</MudChip>
+                    </MudText>
+
+                    @foreach (var author in AuthorHelper.GetList(Article.Authors))
+                    {
+                        <MudChip T="string" Icon="@Icons.Material.Filled.Person" Color="Color.Primary" Href="@($"/articles/filter/Authors/{author}")" Target="_blank">@author</MudChip>
+                    }
+
+                </CardHeaderContent>
+
+            </MudCardHeader>
+            <MudCardContent>
+                <MudText>Abstract</MudText>
+                <MudText Typo="Typo.body1" Style="line-height:32px;">@Article.Abstract</MudText>
+            </MudCardContent>
+
+        </MudCard>
+        <MudTabs Elevation="2" Class="mt-5" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6" SelectedIndexChanged="OnTabChanged">
+            <MudTabPanel Text="标注网络">
+
+                <MudText Class="mb-2">
+                    网络格式使用 Graphviz的 DOT language
+                    <MudLink Href="/visnetwork" Underline="Underline.Always"> 说明文档 </MudLink>
+
+                </MudText>
+
+                <MudTextField T="string" Variant="Variant.Outlined" @bind-Value="@GraphString" AutoGrow Lines="20" />
+
+                <MudButton Class="mt-3" Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveGraph" Size="Size.Medium"> 保 存 </MudButton>
+            </MudTabPanel>
+            <MudTabPanel Text="可视化">
+
+                @if (!string.IsNullOrEmpty(errorMsg))
+                {
+                    <MudAlert Severity="Severity.Warning">@errorMsg</MudAlert>
+                }
+
+                <MudPaper Height="600px" Elevation="0">
+                    <Network @ref="network" Id="my-id" style="height:100%;width:100%;" SetupCompletedCallback="NetworkReady" Options="NetworkOptions" />
+                </MudPaper>
+            </MudTabPanel>
+        </MudTabs>
+
+
+
+    </MudItem>
+</MudGrid>
+

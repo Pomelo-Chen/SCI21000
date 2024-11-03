@@ -1,0 +1,48 @@
+﻿@page "/visnetwork"
+@using KGNetwork.Data
+@using KGNetwork.Utils
+@using VisNetwork.Blazor
+@using VisNetwork.Blazor.Models
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+
+<MudTabs Elevation="2" Class="mt-5" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+    <MudTabPanel Text="标注网络">
+
+        <MudText Class="mb-2">
+            网络格式使用 Graphviz的 DOT language
+            <MudLink Href="https://graphviz.org/doc/info/lang.html" Underline="Underline.Always"> 说明文档 </MudLink>
+        </MudText>
+
+        <MudText>
+            简单说明：<br />
+            有向边: A->B;<br />
+            无向边: A--B;<br />
+            边属性C: A->B[label="C"] <br />
+            注意：词组需要用_连接 <br />
+
+            中文输入,节点名需要用""(半角英文双引号)
+
+
+
+
+        </MudText>
+
+        <MudTextField T="string" Variant="Variant.Outlined" @bind-Value="@GraphString" AutoGrow Lines="20" />
+
+    </MudTabPanel>
+
+    <MudTabPanel Text="可视化">
+
+        @if (!string.IsNullOrEmpty(errorMsg))
+        {
+            <MudAlert Severity="Severity.Warning">@errorMsg</MudAlert>
+        }
+
+        <MudPaper Height="600px" Elevation="0">
+            <Network @ref="network" Id="my-id" style="height:100%;width:100%;" SetupCompletedCallback="NetworkReady" />
+        </MudPaper>
+    </MudTabPanel>
+
+</MudTabs>

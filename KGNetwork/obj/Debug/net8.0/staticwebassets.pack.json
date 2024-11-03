@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\admin\\source\\repos\\KGNetwork\\KGNetwork\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\admin\\source\\repos\\KGNetwork\\KGNetwork\\wwwroot\\js\\pdf.js",
+      "PackagePath": "staticwebassets\\js\\pdf.js"
+    },
+    {
+      "Id": "C:\\Users\\admin\\source\\repos\\KGNetwork\\KGNetwork\\wwwroot\\pdf\\s41467-024-48495-8.pdf",
+      "PackagePath": "staticwebassets\\pdf\\s41467-024-48495-8.pdf"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.KGNetwork.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.KGNetwork.props",
+      "PackagePath": "build\\KGNetwork.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.KGNetwork.props",
+      "PackagePath": "buildMultiTargeting\\KGNetwork.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.KGNetwork.props",
+      "PackagePath": "buildTransitive\\KGNetwork.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

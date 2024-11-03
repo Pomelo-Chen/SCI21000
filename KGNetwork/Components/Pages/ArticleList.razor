@@ -1,0 +1,67 @@
+﻿@page "/articles"
+@using KGNetwork.Data
+@using KGNetwork.Utils
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<MudPopoverProvider />
+
+<MudPaper Elevation="25">
+    <MudToolBar>
+        <MudGrid>
+            <MudItem xs="3">
+                <MudSelect Placeholder="文献类型" T="string" Clearable="true" ValueChanged="ValueChanged">
+                    @foreach (var item in DocType.Items())
+                    {
+                        <MudSelectItem Value="@item">
+                            @item
+                        </MudSelectItem>
+                    }
+                </MudSelect>
+            </MudItem>
+
+        </MudGrid>
+
+    </MudToolBar>
+</MudPaper>
+
+
+<MudDataGrid @ref="dataGrid" T="Article" ServerData="ServerReload" Filterable="false">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">citation_topic_6.238.166 Bibliometrics</MudText>
+        <MudSpacer />
+
+
+        <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Search" Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <Columns>
+        <TemplateColumn Title="Title">
+            <CellTemplate>
+                <MudLink Href="@($"/article/{@context.Item.Id}")" Target="_blank">
+                    @context.Item.ArticleTitle
+                </MudLink>
+
+                <MudBadge Content="context.Item.DocumentType" Overlap="true" Class="mx-6 my-4">
+
+                </MudBadge>
+
+            </CellTemplate>
+        </TemplateColumn>
+        <TemplateColumn Title="Source">
+            <CellTemplate>
+                <MudLink Href="@($"/articles/filter/Source/{context.Item.Source}")" Target="_blank">
+                    @context.Item.Source
+                </MudLink>
+            </CellTemplate>
+        </TemplateColumn>
+
+        <PropertyColumn Property="x => x.PublicationDate" />
+
+        <PropertyColumn Property="x => AuthorHelper.KeepTwoAuthors(x.Authors)" />
+        <PropertyColumn Property="x => x.TimesCited" />
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="Article" />
+    </PagerContent>
+</MudDataGrid>

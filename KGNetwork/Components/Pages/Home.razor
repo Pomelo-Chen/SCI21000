@@ -1,0 +1,44 @@
+﻿@page "/"
+
+<PageTitle>人类知识高速公路</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Large">
+    <MudText Typo="Typo.h5" GutterBottom="true">欢迎来到人类知识高速公路</MudText>
+    <MudText Class="mb-8">这里不限速，放心踩油门......</MudText>
+
+    <MudAlert Severity="Severity.Normal">
+        北京师范大学吴金闪教授提出“人类知识高速公路上以高层知识生成器为目标的理解型学习”。
+    </MudAlert>
+
+    <br />
+    <MudText Typo="Typo.h5" GutterBottom="true">Top 100 papers in Science of Science</MudText>
+    <br />
+    <MudText Typo="Typo.body2">
+        一个帮助科学学学习者、研究者和科技管理者的网站。这个网站包含科学学领域推荐阅读论文、每篇论文的概念网络和WHWM（研究问题、方法、结果、对学科和世界的意义）、科学学概念网络（学科大图景、概念和大图景的联系）、论文到概念的标注、作者识别和作者师承关系标注。<br />
+        In this case, providers are globally set in the MainLayout.<br />
+        <br />
+        <MudLink Href="https://www.bigphysics.org/index.php/%E5%88%86%E7%B1%BB:Sci2100" Target="_blank" Typo="Typo.body2" Color="Color.Primary">
+            More details
+        </MudLink>
+    </MudText>
+
+    <br />
+    <MudText Typo="Typo.h5" GutterBottom="true">当前我们需要做的事情</MudText>
+    <br />
+    <MudText Typo="Typo.body2" GutterBottom="true">
+        本项目有三项主要内容：<br />
+
+        从上到下，靠人工，整理科学学概念网络（包含科学学学科大图景、核心概念、概念间联系）<br />
+        选择100篇论文，从下到上，靠人工和算法结合，给每篇论文做概念标注（每篇文章上标注出来，哪些是概念，哪些是联系并且是哪一对概念之间的联系），定位到概念网络上；同时回答，这篇论文的WHWM，也就是说了什么（What）、怎么说的（How）、为什么说这个为什么这样说（Why）、我觉得怎么样（Meaningful） <br />
+        设计网站，展示标注了论文的科学学概念网络，展示对每篇论文的总结和评价，同时允许用户提交新的论文和概念<br />
+        <MudLink Href="https://www.bigphysics.org/index.php/%E5%88%86%E7%B1%BB:Sci2100" Target="_blank" Typo="Typo.body2" Color="Color.Primary">
+            More details
+        </MudLink>
+    </MudText>
+
+    <br />
+
+    <MudButton Href="/articles" Variant="Variant.Filled" Color="Color.Primary">进入科学学论文列表</MudButton>
+
+</MudContainer>
+
